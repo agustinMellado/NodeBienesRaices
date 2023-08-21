@@ -2,11 +2,9 @@ import express from "express";
 
 const router= express.Router();
 
-router.get('/', (req, res) => {
-    res.json({msg:'hola mundo en express'})
-})
-router.post('/', (req, res) => {
-    res.json({msg:'respuesta de tipo post'})
+router.get('/login', (req, res) => {
+    //func. encargada de mostrar una vista.
+    res.render('auth/login')
 })
 
 

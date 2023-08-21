@@ -7,8 +7,9 @@ const app = express();
 app.set('view engine', 'pug')
 app.set('views','./views')//indicamos donde estan las vistas
 
+
 //Routing
-app.use('/', usuarioRoutes) //use para que funcione con todos los metodos
+app.use('/auth', usuarioRoutes) //use para que funcione con todos los metodos
 
 //definir el puerto 
 const port =3000;
