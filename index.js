@@ -5,7 +5,7 @@ import usuarioRoutes from './routes/usuarioRoutes.js';
 const app = express();
 
 //Routing
-app.get('/', usuarioRoutes)
+app.use('/', usuarioRoutes) //use para que funcione con todos los metodos
 
 //definir el puerto 
 const port =3000;
