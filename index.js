@@ -5,7 +5,7 @@ import usuarioRoutes from './routes/usuarioRoutes.js';
 const app = express();
 //Habilitar Pub templane engine
 app.set('view engine', 'pug')
-app.set('views','./views')
+app.set('views','./views')//indicamos donde estan las vistas
 
 //Routing
 app.use('/', usuarioRoutes) //use para que funcione con todos los metodos
