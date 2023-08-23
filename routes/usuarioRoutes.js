@@ -1,7 +1,9 @@
 import express from "express";
 
 const router= express.Router();
-//rutas
+//rutas 
+//endpoint
+
 router.get('/login', formularioLogin)
 
 //exportacion
