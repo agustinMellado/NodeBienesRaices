@@ -7,7 +7,7 @@ const app = express();
 app.set('view engine', 'pug')
 app.set('views','./views')//indicamos donde estan las vistas
 
-// carpeta publica
+// Carpeta publica
 app.use(express.static('public'))
 
 //Routing
