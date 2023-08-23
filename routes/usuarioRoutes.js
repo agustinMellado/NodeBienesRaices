@@ -1,8 +1,8 @@
 import express from "express";
 
 const router= express.Router();
-
-router.get('/login',)
+//rutas
+router.get('/login', formularioLogin)
 
 //exportacion
 export default router
