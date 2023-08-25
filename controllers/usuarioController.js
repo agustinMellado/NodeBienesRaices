@@ -12,8 +12,16 @@ const formularioRegistro= (req, res) => {
         
     })
 }
+const formularioRecuperarPassword= (req, res) => {
+    //.render encargado de mostrar una vista.
+    res.render('auth/recuperar-pass',{
+        pagina:'Recuperar Contraseña'
+        
+    })
+}
 
 export{
     formularioLogin,
-    formularioRegistro
+    formularioRegistro,
+    formularioRecuperarPassword
 }
