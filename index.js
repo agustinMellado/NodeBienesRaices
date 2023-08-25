@@ -1,8 +1,16 @@
 import express from 'express'//ES MODULES
 import usuarioRoutes from './routes/usuarioRoutes.js';
+import db from './config/db.js';
 //crear la app
 
 const app = express();
+//conexion a la base de datos
+try{
+   await db.authenticate(); 
+   console.log('conexion correcta a la base de datos')
+}catch{
+    console.log(error)
+}
 //Habilitar Pub templane engine
 app.set('view engine', 'pug')
 app.set('views','./views')//indicamos donde estan las vistas

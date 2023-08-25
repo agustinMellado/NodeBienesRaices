@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-const db = new Sequelize('bienes_raices_node_mvc', 'root', '',{
+const db = new Sequelize('bienes_raices_node_mvc', 'root', 'root1941',{
     host: 'localhost',
     port: 3306,
     dialect: 'mysql',
@@ -16,6 +16,4 @@ const db = new Sequelize('bienes_raices_node_mvc', 'root', '',{
     },
     operatorAliases:false,
 })
-export default{
-    db
-}
+export default db;
