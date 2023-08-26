@@ -12,6 +12,11 @@ const formularioRegistro= (req, res) => {
         
     })
 }
+
+const registrar= (req, res) => {
+    console.log("registrando....")
+}
+
 const formularioRecuperarPassword= (req, res) => {
     //.render encargado de mostrar una vista.
     res.render('auth/recuperar-pass',{
@@ -23,5 +28,6 @@ const formularioRecuperarPassword= (req, res) => {
 export{
     formularioLogin,
     formularioRegistro,
+    registrar,
     formularioRecuperarPassword
 }
