@@ -14,7 +14,7 @@ const formularioRegistro= (req, res) => {
 }
 
 const registrar= (req, res) => {
-    console.log("registrando....")
+    console.log(req.body)
 }
 
 const formularioRecuperarPassword= (req, res) => {

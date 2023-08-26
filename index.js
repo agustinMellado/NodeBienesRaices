@@ -4,6 +4,10 @@ import db from './config/db.js';
 //crear la app
 
 const app = express();
+
+//habilitar lectura de datos 
+app.use(express.urlencoded({extended:true}))
+
 //conexion a la base de datos
 try{
    await db.authenticate(); 
