@@ -35,10 +35,13 @@ const registrar= async (req, res) => {
             }
         })
     }
+    //extraer datos
+    const { nombre, email, password } = req.body
+
     //verificar que el usuario no este duplicado.
     const existeUsuario= await Usuario.findOne({
         where:{
-            email:req.body.email
+            email
         }
     })
     if(existeUsuario){
