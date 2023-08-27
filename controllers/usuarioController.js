@@ -26,9 +26,9 @@ const registrar= async (req, res) => {
     //verificar que el resultado este vacio
     if(!resultado.isEmpty()){
         //errores
-        return   res.render('auth/registro',{
+        return   res.render('auth/registro',{//retorno para que no siga 
             pagina:'Crear Cuenta',
-            errores: resultado.array()
+            errores: resultado.array()//envio a la vista los msj de las validaciones
         })
     }
 
