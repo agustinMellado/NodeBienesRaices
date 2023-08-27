@@ -11,6 +11,7 @@ app.use(express.urlencoded({extended:true}))
 //conexion a la base de datos
 try{
    await db.authenticate(); 
+   db.sync()//genera la bd si no existe
    console.log('conexion correcta a la base de datos')
 }catch{
     console.log(error)

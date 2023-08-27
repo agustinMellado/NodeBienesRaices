@@ -1,3 +1,4 @@
+import Usuario from '../models/Usuario.js'
 //zona de controllador
 const formularioLogin= (req, res) => {
     //.render encargado de mostrar una vista.
