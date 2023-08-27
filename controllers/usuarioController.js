@@ -35,13 +35,30 @@ const registrar= async (req, res) => {
             }
         })
     }
-
+    //verificar que el usuario no este duplicado.
+    const existeUsuario= await Usuario.findOne({
+        where:{
+            email:req.body.email
+        }
+    })
+    if(existeUsuario){
+         //errores
+         return   res.render('auth/registro',{//retorno para que no siga 
+            pagina:'Crear Cuenta',
+            errores:[{msg: 'El usuario ya esta registrado'}],//envio a la vista los msj de las validaciones
+            usuario:{
+                nombre: req.body.nombre,
+                email: req.body.email
+            }
+        })
+    }
+    console.log(existeUsuario)
     res.json(resultado.array())
 
 
 
-    const usuario = await Usuario.create(req.body)
-    res.json(usuario)
+    // const usuario = await Usuario.create(req.body)
+    // res.json(usuario)
     
 }
 
