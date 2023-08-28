@@ -55,13 +55,14 @@ const registrar= async (req, res) => {
             }
         })
     }
-    console.log(existeUsuario)
-    res.json(resultado.array())
+    //almacenamiento usuario
+    await Usuario.create({
+        nombre,
+        email,
+        password,
+        token:123
+    })
 
-
-
-    // const usuario = await Usuario.create(req.body)
-    // res.json(usuario)
     
 }
 
