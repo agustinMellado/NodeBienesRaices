@@ -1,5 +1,6 @@
 import {check, validationResult} from 'express-validator'
 import Usuario from '../models/Usuario.js'
+import { generarId } from '../helpers/token.js'
 //zona de controllador
 const formularioLogin= (req, res) => {
     //.render encargado de mostrar una vista.
@@ -60,7 +61,7 @@ const registrar= async (req, res) => {
         nombre,
         email,
         password,
-        token:123
+        token:generarId()
     })
 
     
