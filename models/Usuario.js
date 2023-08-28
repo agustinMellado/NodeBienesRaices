@@ -18,8 +18,16 @@ const Usuario = db.define('usuario',{
     token:{
         type: DataTypes.STRING, //TIPO DE DATO
         confirmado: DataTypes.BOOLEAN,
-    }
+    },
+    hooks:{ 
+        //Antes que se cree el password, lo interseptamos y lo encriptamos.
+        beforeCreate: async function(usuario){
+        
 
+        }
+
+    }
+    
 
 })
 export default Usuario
