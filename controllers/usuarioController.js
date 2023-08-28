@@ -46,7 +46,7 @@ const registrar= async (req, res) => {
     })
     if(existeUsuario){
          //errores
-         return   res.render('auth/registro',{//retorno para que no siga 
+        return   res.render('auth/registro',{//retorno para que no siga 
             pagina:'Crear Cuenta',
             errores:[{msg: 'El usuario ya esta registrado'}],//envio a la vista los msj de las validaciones
             usuario:{
