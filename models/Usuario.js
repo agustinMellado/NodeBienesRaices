@@ -23,7 +23,7 @@ const Usuario = db.define('usuario',{
         hooks:{ 
             //Antes que se cree el nuevo registro de usuario,interseptamos el password y lo encriptamos.
             beforeCreate: async function(usuario){
-                const salt = await bcrypt.getSalt(10);//cadena aleatoria que se utiliza como entrada adicional al algoritmo de hash
+                const salt = await bcrypt.genSalt(10);//cadena aleatoria que se utiliza como entrada adicional al algoritmo de hash
                 usuario.password= await bcrypt.hash(usuario.password,salt);//asignamos el valor cifrado previo.
             }
     
