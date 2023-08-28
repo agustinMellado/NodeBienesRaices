@@ -20,10 +20,10 @@ const Usuario = db.define('usuario',{
         confirmado: DataTypes.BOOLEAN,
     },
     hooks:{ 
-        //Antes que se cree el password, lo interseptamos y lo encriptamos.
+        //Antes que se cree el nuevo registro de usuario,interseptamos el password y lo encriptamos.
         beforeCreate: async function(usuario){
-        
-
+            const salt = await bcrypt.getSalt(10);//cadena aleatoria que se utiliza como entrada adicional al algoritmo de hash
+            usuario.password= await bcrypt.hash(usuario.password,salt);//asignamos el valor cifrado previo.
         }
 
     }
