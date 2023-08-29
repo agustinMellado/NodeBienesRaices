@@ -79,7 +79,7 @@ const registrar= async (req, res) => {
 }
 
 //funcion que comprueba una cuenta
-const comprobar= (res,req)=> {
+const confirmar= (res,req)=> {
     console.log('comprobando....')
 }
 const formularioRecuperarPassword= (req, res) => {
@@ -94,6 +94,6 @@ export{
     formularioLogin,
     formularioRegistro,
     registrar,
-    comprobar,
+    confirmar,
     formularioRecuperarPassword
 }
