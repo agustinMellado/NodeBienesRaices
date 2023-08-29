@@ -64,7 +64,6 @@ const registrar= async (req, res) => {
         password,
         token:generarId()//llamoa a la funcion al generador creado en tokens
     })
-
     //Email de confirmacion
     emailRegistro({
         nombre:usuario.nombre,

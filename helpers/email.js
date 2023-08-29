@@ -1,5 +1,6 @@
 
 import nodemailer from 'nodemailer'
+
 const emailRegistro = async (datos) => {
 
     const transport = nodemailer.createTransport({
@@ -25,7 +26,7 @@ const emailRegistro = async (datos) => {
         <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/confirmar/${token}">Confirmar Cuenta</a></p>
         <p>Si tu no creaste esta cuenta puedes ignorar este mensaje.<p>`
 
-    })
+    });
 
 }
 
