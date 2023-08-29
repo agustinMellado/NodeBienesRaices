@@ -78,6 +78,10 @@ const registrar= async (req, res) => {
     
 }
 
+//funcion que comprueba una cuenta
+const comprobar= (res,req)=> {
+    console.log('comprobando....')
+}
 const formularioRecuperarPassword= (req, res) => {
     //.render encargado de mostrar una vista.
     res.render('auth/recuperar-pass',{
@@ -90,5 +94,6 @@ export{
     formularioLogin,
     formularioRegistro,
     registrar,
+    comprobar,
     formularioRecuperarPassword
 }
