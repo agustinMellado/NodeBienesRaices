@@ -1,5 +1,5 @@
-import { nodemailer } from 'nodemailer';
 
+import nodemailer from 'nodemailer'
 const emailRegistro = async (datos) => {
 
     const transport = nodemailer.createTransport({
@@ -10,6 +10,7 @@ const emailRegistro = async (datos) => {
             pass: process.env.EMAIL_PASS
         }
     });
+    console.log(datos);
 }
 
 export {
