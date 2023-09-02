@@ -1,4 +1,6 @@
 import express from 'express'//ES MODULES
+import csrf from 'csurf'
+import cookieParser from 'cookie-parser'
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import db from './config/db.js';
 //crear la app
@@ -8,6 +10,10 @@ const app = express();
 //habilitar lectura de datos 
 app.use(express.urlencoded({extended:true}))
 
+//habilitar cookie parser
+app.use(cookieParser());
+//habilitar CSRF
+app.use(csrf({cookie:true}))
 //conexion a la base de datos
 try{
    await db.authenticate(); 
