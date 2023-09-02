@@ -8,6 +8,7 @@ const router= express.Router();
 router.get('/login', formularioLogin)
 router.get('/registro',formularioRegistro)
 router.post('/registro',registrar)
+//routing dinamico
 router.get('/confirmar/:token',confirmar)//lee el token
 router.get('/recuperar-pass',formularioRecuperarPassword)
 
