@@ -95,7 +95,7 @@ const confirmar = async (req, res) => {
 
     }
     //confirmar la cuenta
-    usuario.token=null;
+    usuario.token=null;//el token es de uso unico, una vez usado se vuelve nulo.
     usuario.confirmar= true;
     await usuario.save()// se guarda la nueva informacion en la bd
     res.render('auth/confirmar-cuenta', {
