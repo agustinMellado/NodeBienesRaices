@@ -86,6 +86,7 @@ const confirmar = async (req, res) => {
     const usuario = await Usuario.findOne({ where: { token } })
     //si no existe el usuario
     if (!usuario) {
+        //renderiza la vista
         return res.render('auth/confirmar-cuenta', {
             pagina: 'Error al confirmar tu cuenta',
             mensaje: 'Hubo un error al confirmar tu cuenta, intenta de nuevo.',
@@ -94,7 +95,14 @@ const confirmar = async (req, res) => {
 
     }
     //confirmar la cuenta
-
+    usuario.token=null;
+    usuario.confirmar= true;
+    await usuario.save()// se guarda la nueva informacion en la bd
+    res.render('auth/confirmar-cuenta', {
+        pagina: 'Cuenta confirmada',
+        mensaje: 'La cuenta se confirmo correctamente',
+        
+    })
 }
 const formularioRecuperarPassword = (req, res) => {
     //.render encargado de mostrar una vista.
