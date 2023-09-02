@@ -10,9 +10,12 @@ const formularioLogin = (req, res) => {
     })
 }
 const formularioRegistro = (req, res) => {
+
+    console.log(req.csrfToken())
     //.render encargado de mostrar una vista.
     res.render('auth/registro', {
-        pagina: 'Crear Cuenta'
+        pagina: 'Crear Cuenta',
+        csrfToken:req.csrfToken()//cada vez que se visite el formulario se genera un token.
 
     })
 }
@@ -30,6 +33,7 @@ const registrar = async (req, res) => {
         //errores
         return res.render('auth/registro', {//retorno para que no siga 
             pagina: 'Crear Cuenta',
+            csrfToken:req.csrfToken(),//cada vez que se visite el formulario se genera un token.
             errores: resultado.array(),//envio a la vista los msj de las validaciones
             usuario: {
                 nombre: req.body.nombre,
@@ -50,6 +54,7 @@ const registrar = async (req, res) => {
         //errores
         return res.render('auth/registro', {//retorno para que no siga 
             pagina: 'Crear Cuenta',
+            csrfToken:req.csrfToken(),//cada vez que se visite el formulario se genera un token.
             errores: [{ msg: 'El usuario ya esta registrado' }],//envio a la vista los msj de las validaciones
             usuario: {
                 nombre: req.body.nombre,
