@@ -51,8 +51,8 @@ const emailRecuperarPass= async (datos) => {
         <p> Hola ${nombre}, has solicitado reestablecer tu contraseña en BienesRaices.com</p>
 
         <p>Sigue el siguiente enlace para generar una contraseña nueva:
-        <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/confirmar/${token}">Confirmar Cuenta</a></p>
-        <p>Si no creaste esta cuenta, ignorar este mensaje.<p>`
+        <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/recuperar-pass/${token}">Recuperar contraseña</a></p>
+        <p>Si no solicitaste el cambio de contraseña, puedes ignorar este mensaje.<p>`
 
     });
 

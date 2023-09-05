@@ -1,7 +1,7 @@
 import { check, validationResult } from 'express-validator'
 import Usuario from '../models/Usuario.js'
 import { generarId } from '../helpers/token.js'
-import { emailRegistro } from '../helpers/email.js'
+import { emailRecuperarPass, emailRegistro } from '../helpers/email.js'
 //zona de controllador
 const formularioLogin = (req, res) => {
     //.render encargado de mostrar una vista.
@@ -149,6 +149,14 @@ const resetearPass = async (req, res) => {
     //Generar nuevo token y enviar email
     usuario.token= generarId();
     await usuario.save();//guardamos el cambio en la base de datos
+    //enviamos el email
+    emailRecuperarPass({
+        email: usuario.email,
+        nombre: usuario.nombre, 
+        token:usuario.token
+    })
+
+ 
 
 }
 const comprobarToken= (req, res) =>{}
