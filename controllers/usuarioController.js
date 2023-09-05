@@ -134,10 +134,17 @@ const resetearPass = async (req, res) => {
         })
     }
     //Buscar email de user
-    const {email}= req.body
+    const {email}= req.body//tomamos el email del input
 
-    const usuario= await Usuario.findOne({where:{email}})
-
+    const usuario= await Usuario.findOne({where:{email}})//lo buscamos en la bd
+    //si no esta registrado
+    if(!usuario){//enviamos un mensaje de error
+        res.render('auth/recuperar-pass', {
+            pagina: 'Recuperar Contraseña',
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+            errores: [{msg:'El Email no pertenece a ningun usuario'}]
+        })
+    }
     console.log(usuario)
     //Generar nuevo token
 
