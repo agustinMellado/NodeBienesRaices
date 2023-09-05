@@ -117,10 +117,15 @@ const formularioRecuperarPassword = (req, res) => {
     })
 }
 
+const resetearPass= (req, res) => {
+
+}
+
 export {
     formularioLogin,
     formularioRegistro,
     registrar,
     confirmar,
-    formularioRecuperarPassword
+    formularioRecuperarPassword,
+    resetearPass
 }
