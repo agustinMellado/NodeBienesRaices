@@ -130,7 +130,7 @@ const resetearPass = async (req, res) => {
         res.render('auth/recuperar-pass', {
             pagina: 'Recuperar Contraseña',
             csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
-          
+            errores: resultado.array()
         })
     }
 
