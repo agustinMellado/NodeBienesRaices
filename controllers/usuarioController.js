@@ -126,13 +126,20 @@ const resetearPass = async (req, res) => {
 
     let resultado = validationResult(req)
     //verificar que el resultado este vacio
-    if (!resultado.isEmpty()) {
+    if (!resultado.isEmpty()) { //presento por patalla los errores
         res.render('auth/recuperar-pass', {
             pagina: 'Recuperar Contraseña',
             csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
             errores: resultado.array()
         })
     }
+    //Buscar email de user
+    const {email}= req.body
+
+    const usuario= await Usuario.findOne({where:{email}})
+
+    console.log(usuario)
+    //Generar nuevo token
 
 }
 
