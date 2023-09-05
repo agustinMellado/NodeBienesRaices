@@ -13,7 +13,7 @@ router.post('/registro',registrar)
 router.get('/confirmar/:token',confirmar)//lee el token
 
 router.get('/recuperar-pass',formularioRecuperarPassword)
-router.post('/recuperar-pass',formularioRecuperarPassword)
+router.post('/recuperar-pass',resetearPass)
 
 //exportacion
 export default router
