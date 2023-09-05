@@ -15,7 +15,7 @@ const formularioRegistro = (req, res) => {
     //.render encargado de mostrar una vista.
     res.render('auth/registro', {
         pagina: 'Crear Cuenta',
-        csrfToken:req.csrfToken()//cada vez que se visite el formulario se genera un token.
+        csrfToken: req.csrfToken()//cada vez que se visite el formulario se genera un token.
 
     })
 }
@@ -33,7 +33,7 @@ const registrar = async (req, res) => {
         //errores
         return res.render('auth/registro', {//retorno para que no siga 
             pagina: 'Crear Cuenta',
-            csrfToken:req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
             errores: resultado.array(),//envio a la vista los msj de las validaciones
             usuario: {
                 nombre: req.body.nombre,
@@ -54,7 +54,7 @@ const registrar = async (req, res) => {
         //errores
         return res.render('auth/registro', {//retorno para que no siga 
             pagina: 'Crear Cuenta',
-            csrfToken:req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
             errores: [{ msg: 'El usuario ya esta registrado' }],//envio a la vista los msj de las validaciones
             usuario: {
                 nombre: req.body.nombre,
@@ -100,26 +100,39 @@ const confirmar = async (req, res) => {
 
     }
     //confirmar la cuenta
-    usuario.token=null;//el token es de uso unico, una vez usado se vuelve nulo.
-    usuario.confirmar= true;
+    usuario.token = null;//el token es de uso unico, una vez usado se vuelve nulo.
+    usuario.confirmar = true;
     await usuario.save()// se guarda la nueva informacion en la bd
     res.render('auth/confirmar-cuenta', {
         pagina: 'Cuenta confirmada',
         mensaje: 'La cuenta se confirmo correctamente',
-        
+
     })
 }
 const formularioRecuperarPassword = (req, res) => {
     //.render encargado de mostrar una vista.
     res.render('auth/recuperar-pass', {
         pagina: 'Recuperar Contraseña',
-        csrfToken:req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+        csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
 
 
     })
 }
 
-const resetearPass= (req, res) => {
+const resetearPass = async (req, res) => {
+
+    //validacion
+    await check('email').isEmail().withMessage('Ingrese un email valido').run(req)//que sean emails validos.
+
+    let resultado = validationResult(req)
+    //verificar que el resultado este vacio
+    if (!resultado.isEmpty()) {
+        res.render('auth/recuperar-pass', {
+            pagina: 'Recuperar Contraseña',
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+          
+        })
+    }
 
 }
 
