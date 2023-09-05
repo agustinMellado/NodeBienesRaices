@@ -151,6 +151,9 @@ const resetearPass = async (req, res) => {
     await usuario.save();//guardamos el cambio en la base de datos
 
 }
+const comprobarToken= (req, res) =>{}
+
+const nuevoPassword= (req, res) =>{}
 
 export {
     formularioLogin,
@@ -158,5 +161,7 @@ export {
     registrar,
     confirmar,
     formularioRecuperarPassword,
-    resetearPass
+    resetearPass,
+    comprobarToken,
+    nuevoPassword
 }
