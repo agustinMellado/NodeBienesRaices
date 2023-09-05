@@ -145,8 +145,10 @@ const resetearPass = async (req, res) => {
             errores: [{msg:'El Email no pertenece a ningun usuario'}]
         })
     }
-    console.log(usuario)
-    //Generar nuevo token
+    
+    //Generar nuevo token y enviar email
+    usuario.token= generarId();
+    await usuario.save();//guardamos el cambio en la base de datos
 
 }
 
