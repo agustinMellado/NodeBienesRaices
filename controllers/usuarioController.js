@@ -155,8 +155,12 @@ const resetearPass = async (req, res) => {
         nombre: usuario.nombre, 
         token:usuario.token
     })
+    //Mensaje de confirmacion
+    res.render('template/mensaje', {
+        pagina: 'Recupera tu Contraseña',
+        mensaje: 'Hemos enviado un email de recuperacion.',
 
- 
+    })
 
 }
 const comprobarToken= (req, res) =>{}
