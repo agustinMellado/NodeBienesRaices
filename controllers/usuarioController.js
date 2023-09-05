@@ -112,7 +112,9 @@ const confirmar = async (req, res) => {
 const formularioRecuperarPassword = (req, res) => {
     //.render encargado de mostrar una vista.
     res.render('auth/recuperar-pass', {
-        pagina: 'Recuperar Contraseña'
+        pagina: 'Recuperar Contraseña',
+        csrfToken:req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+
 
     })
 }
