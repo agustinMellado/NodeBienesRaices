@@ -174,7 +174,7 @@ const comprobarToken = async (req, res) => {
         //renderiza la vista
         return res.render('auth/confirmar-cuenta', {
             pagina: 'Recuperar tu cuenta',
-            mensaje: 'Hubo un error al validad tu informacion, intenta de nuevo.',
+            mensaje: 'Hubo un error al validar tu informacion, intenta de nuevo.',
             error: true
         })
     }
