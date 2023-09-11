@@ -1,8 +1,9 @@
 import { check, validationResult } from 'express-validator'
+import bcrypt from "bcrypt";
 import Usuario from '../models/Usuario.js'
 import { generarId } from '../helpers/token.js'
 import { emailRecuperarPass, emailRegistro } from '../helpers/email.js'
-import bcrypt from "bcrypt";
+
 //zona de controllador
 const formularioLogin = (req, res) => {
     //.render encargado de mostrar una vista.
@@ -187,7 +188,7 @@ const comprobarToken = async (req, res) => {
 
 }
 
-const nuevoPassword = async(req, res) => {
+const nuevoPassword = async (req, res) => {
     //validar nueva contraseña
     await check('password').isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres').run(req)//un minimo necesario de contrasenias
     await check('repetir_password').equals(req.body.password).withMessage('Las contraseñas no coinciden').run(req)// verifica que las contrasenias coincidan.
@@ -199,27 +200,27 @@ const nuevoPassword = async(req, res) => {
             pagina: 'Restablece tu contraseña',
             csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
             errores: resultado.array(),//envio a la vista los msj de las validaciones
-            usuario: {
-                nombre: req.body.nombre,
-                email: req.body.email
-            }
         })
     }
     //tomamos informacion de la vista
-    const {token}= req.params
-    const {password} = req.params
+    const { token } = req.params//toma el token de la url
+    const { password } = req.body// toma los valores de los inputs
 
     //identificamos que usuario realiza el cambio
-    const usuario = await Usuario.findOne({where: {token}})
+    const usuario = await Usuario.findOne({ where: { token } })
     //hasheamos la nueva password
     const salt = await bcrypt.genSalt(10);//cadena aleatoria que se utiliza como entrada adicional al algoritmo de hash
-    usuario.password= await bcrypt.hash(password,salt);//asignamos el nuevo password tomado de la vista y almacenamos hasheado .
+    usuario.password = await bcrypt.hash(password, salt);//asignamos el nuevo password tomado de la vista y almacenamos hasheado .
     //eliminacion token
-    usuario.token= null;
+    usuario.token = null;
     await usuario.save() //guardamos y actualizamos la informacion de la bd
+    res.render('auth/confirmar-cuenta',
+        {
+            pagina: 'Contraseña reestablecida',
+            mensaje:'La contraseña se guardo correctamente'
+        })
 
 
-    console.log('guardando contraseña')
 }
 
 export {
