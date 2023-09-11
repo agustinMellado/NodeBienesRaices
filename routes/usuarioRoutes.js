@@ -1,11 +1,12 @@
 import express from "express";
-import { formularioLogin, formularioRegistro, registrar,confirmar, formularioRecuperarPassword, resetearPass, comprobarToken, nuevoPassword} from "../controllers/usuarioController.js";
+import { formularioLogin, autenticar, formularioRegistro, registrar,confirmar, formularioRecuperarPassword, resetearPass, comprobarToken, nuevoPassword} from "../controllers/usuarioController.js";
 
 const router= express.Router();
 //rutas 
 //endpoint que renderizan vistas
 
 router.get('/login', formularioLogin)
+router.post('/login', autenticar)
 
 router.get('/registro',formularioRegistro)
 router.post('/registro',registrar)

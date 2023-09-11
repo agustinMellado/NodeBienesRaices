@@ -11,6 +11,9 @@ const formularioLogin = (req, res) => {
         pagina: 'Iniciar Sesion'
     })
 }
+const autenticar=(req,res)=> {
+
+}
 const formularioRegistro = (req, res) => {
 
     console.log(req.csrfToken())
@@ -225,6 +228,7 @@ const nuevoPassword = async (req, res) => {
 
 export {
     formularioLogin,
+    autenticar,
     formularioRegistro,
     registrar,
     confirmar,
