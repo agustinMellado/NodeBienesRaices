@@ -14,7 +14,20 @@ const formularioLogin = (req, res) => {
 
     })
 }
-const autenticar=(req,res)=> {
+const autenticar= async(req,res)=> {
+    //validacion de campos
+    await check('email').isEmail().withMessage('EL EMAIL ES OBLIGATORIO').run(req)//que sean emails validos.
+    await check('password').notEmpty().withMessage('LA CONTRASEÑA ES OBLIGATORIA').run(req)//un minimo necesario de contrasenias
+    let resultado = validationResult(req)
+    //verificar que el resultado este vacio
+    if (!resultado.isEmpty()) {
+        //errores
+        return res.render('auth/login', {//retorno para que no siga 
+            pagina: 'Iniciar Sesion',
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+            errores: resultado.array(),//envio a la vista los msj de las validaciones
+        })
+    }
 
 }
 const formularioRegistro = (req, res) => {
