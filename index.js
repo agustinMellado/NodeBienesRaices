@@ -6,7 +6,8 @@ import db from './config/db.js';
 //crear la app
 
 const app = express();
-
+//lectura de datos json
+app.use(express.json())
 //habilitar lectura de datos 
 app.use(express.urlencoded({extended:true}))
 

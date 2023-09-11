@@ -16,7 +16,7 @@ router.get('/recuperar-pass',formularioRecuperarPassword)
 router.post('/recuperar-pass',resetearPass)
 
 //almacena nuevo password
-router.get('/recuperar-password/:token',comprobarToken);
-router.get('/recuperar-password/:token',nuevoPassword);
+router.get('/recuperar-pass/:token',comprobarToken);
+router.post('/recuperar-pass/:token',nuevoPassword);
 //exportacion
 export default router

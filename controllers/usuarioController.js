@@ -134,26 +134,26 @@ const resetearPass = async (req, res) => {
         })
     }
     //Buscar email de user
-    const {email}= req.body//tomamos el email del input
+    const { email } = req.body//tomamos el email del input
 
-    const usuario= await Usuario.findOne({where:{email}})//lo buscamos en la bd
+    const usuario = await Usuario.findOne({ where: { email } })//lo buscamos en la bd
     //si no esta registrado
-    if(!usuario){//enviamos un mensaje de error
+    if (!usuario) {//enviamos un mensaje de error
         res.render('auth/recuperar-pass', {
             pagina: 'Recuperar Contraseña',
             csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
-            errores: [{msg:'El Email no pertenece a ningun usuario'}]
+            errores: [{ msg: 'El Email no pertenece a ningun usuario' }]
         })
     }
-    
+
     //Generar nuevo token y enviar email
-    usuario.token= generarId();
+    usuario.token = generarId();
     await usuario.save();//guardamos el cambio en la base de datos
     //enviamos el email
     emailRecuperarPass({
         email: usuario.email,
-        nombre: usuario.nombre, 
-        token:usuario.token
+        nombre: usuario.nombre,
+        token: usuario.token
     })
     //Mensaje de confirmacion
     res.render('template/mensaje', {
@@ -163,17 +163,35 @@ const resetearPass = async (req, res) => {
     })
 
 }
-const comprobarToken= (req, res) =>{}
+const comprobarToken = async (req, res) => {
 
-const nuevoPassword= (req, res) =>{}
+    const { token } = req.params;
+    const usuario = await Usuario.findOne({ where: { token } })
+    console.log(usuario)
+    if (!usuario) {
+        //renderiza la vista
+        return res.render('auth/confirmar-cuenta', {
+            pagina: 'Recuperar tu cuenta',
+            mensaje: 'Hubo un error al validad tu informacion, intenta de nuevo.',
+            error: true
+        })
+    }
+    // res.render('auth/reset-pass',{
+    //     pagina:'Recupera tu Contraseña'
+    // })
 
-export {
-    formularioLogin,
-    formularioRegistro,
-    registrar,
-    confirmar,
-    formularioRecuperarPassword,
-    resetearPass,
-    comprobarToken,
-    nuevoPassword
-}
+
+    }
+
+    const nuevoPassword = (req, res) => { }
+
+    export {
+        formularioLogin,
+        formularioRegistro,
+        registrar,
+        confirmar,
+        formularioRecuperarPassword,
+        resetearPass,
+        comprobarToken,
+        nuevoPassword
+    }
