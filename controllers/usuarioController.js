@@ -8,7 +8,10 @@ import { emailRecuperarPass, emailRegistro } from '../helpers/email.js'
 const formularioLogin = (req, res) => {
     //.render encargado de mostrar una vista.
     res.render('auth/login', {
-        pagina: 'Iniciar Sesion'
+        pagina: 'Iniciar Sesion',
+        csrfToken: req.csrfToken()//cada vez que se visite el formulario se genera un token.
+
+
     })
 }
 const autenticar=(req,res)=> {
