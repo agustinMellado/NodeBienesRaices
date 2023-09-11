@@ -176,9 +176,10 @@ const comprobarToken = async (req, res) => {
             error: true
         })
     }
-    // res.render('auth/reset-pass',{
-    //     pagina:'Recupera tu Contraseña'
-    // })
+    //Se muestra un formulario para modificar password
+    res.render('auth/reset-pass',{
+        pagina:'Reestablece tu contraseña'
+    })
 
 
     }
