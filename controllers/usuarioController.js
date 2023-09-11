@@ -214,8 +214,9 @@ const nuevoPassword = async(req, res) => {
     //hasheamos la nueva password
     const salt = await bcrypt.genSalt(10);//cadena aleatoria que se utiliza como entrada adicional al algoritmo de hash
     usuario.password= await bcrypt.hash(password,salt);//asignamos el nuevo password tomado de la vista y almacenamos hasheado .
-
-
+    //eliminacion token
+    usuario.token= null;
+    await usuario.save() //guardamos y actualizamos la informacion de la bd
 
 
     console.log('guardando contraseña')
