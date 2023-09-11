@@ -31,7 +31,7 @@ const registrar = async (req, res) => {
     //verificar que el resultado este vacio
     if (!resultado.isEmpty()) {
         //errores
-        return res.render('auth/registro', {//retorno para que no siga 
+        return res.render('auth/reset-pass', {//retorno para que no siga 
             pagina: 'Crear Cuenta',
             csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
             errores: resultado.array(),//envio a la vista los msj de las validaciones
@@ -177,22 +177,47 @@ const comprobarToken = async (req, res) => {
         })
     }
     //Se muestra un formulario para modificar password
-    res.render('auth/reset-pass',{
-        pagina:'Reestablece tu contraseña'
+    res.render('auth/reset-pass', {
+        pagina: 'Reestablece tu contraseña',
+        csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+
     })
 
 
+}
+
+const nuevoPassword = async(req, res) => {
+    //validar nueva contraseña
+    await check('password').isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres').run(req)//un minimo necesario de contrasenias
+    await check('repetir_password').equals(req.body.password).withMessage('Las contraseñas no coinciden').run(req)// verifica que las contrasenias coincidan.
+    let resultado = validationResult(req)
+    //verificar que el resultado este vacio
+    if (!resultado.isEmpty()) {
+        //errores
+        return res.render('auth/registro', {//retorno para que no siga 
+            pagina: 'Crear Cuenta',
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+            errores: resultado.array(),//envio a la vista los msj de las validaciones
+            usuario: {
+                nombre: req.body.nombre,
+                email: req.body.email
+            }
+        })
     }
 
-    const nuevoPassword = (req, res) => { }
 
-    export {
-        formularioLogin,
-        formularioRegistro,
-        registrar,
-        confirmar,
-        formularioRecuperarPassword,
-        resetearPass,
-        comprobarToken,
-        nuevoPassword
-    }
+
+
+    console.log('guardando contraseña')
+}
+
+export {
+    formularioLogin,
+    formularioRegistro,
+    registrar,
+    confirmar,
+    formularioRecuperarPassword,
+    resetearPass,
+    comprobarToken,
+    nuevoPassword
+}
