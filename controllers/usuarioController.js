@@ -2,6 +2,7 @@ import { check, validationResult } from 'express-validator'
 import Usuario from '../models/Usuario.js'
 import { generarId } from '../helpers/token.js'
 import { emailRecuperarPass, emailRegistro } from '../helpers/email.js'
+import bcrypt from "bcrypt";
 //zona de controllador
 const formularioLogin = (req, res) => {
     //.render encargado de mostrar una vista.
@@ -204,12 +205,15 @@ const nuevoPassword = async(req, res) => {
             }
         })
     }
-
+    //tomamos informacion de la vista
     const {token}= req.params
     const {password} = req.params
 
     //identificamos que usuario realiza el cambio
     const usuario = await Usuario.findOne({where: {token}})
+    //hasheamos la nueva password
+    const salt = await bcrypt.genSalt(10);//cadena aleatoria que se utiliza como entrada adicional al algoritmo de hash
+    usuario.password= await bcrypt.hash(password,salt);//asignamos el nuevo password tomado de la vista y almacenamos hasheado .
 
 
 
