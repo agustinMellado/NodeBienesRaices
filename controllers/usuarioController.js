@@ -194,7 +194,7 @@ const nuevoPassword = async(req, res) => {
     //verificar que el resultado este vacio
     if (!resultado.isEmpty()) {
         //errores
-        return res.render('auth/registro', {//retorno para que no siga 
+        return res.render('auth/reset-pass', {//retorno para que no siga 
             pagina: 'Crear Cuenta',
             csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
             errores: resultado.array(),//envio a la vista los msj de las validaciones
