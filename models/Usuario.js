@@ -32,6 +32,7 @@ const Usuario = db.define('usuario', {
 )
 //metodos personalizados
 Usuario.prototype.verificarPassword= function(password) {
+    //compara el password ingresado con el hasheado en nuestra bd
     return bcrypt.compareSync(password, this.password)
 
 }
