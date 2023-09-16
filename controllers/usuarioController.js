@@ -54,6 +54,7 @@ const autenticar = async (req, res) => {
             errores:[{msg:'Tu cuenta no a sido confirmada'}]
         }) 
     }
+    //revisar contraseña
 
 
 }
