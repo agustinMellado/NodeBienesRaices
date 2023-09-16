@@ -14,7 +14,7 @@ const formularioLogin = (req, res) => {
 
     })
 }
-const autenticar= async(req,res)=> {
+const autenticar = async (req, res) => {
     //validacion de campos
     await check('email').isEmail().withMessage('EL EMAIL ES OBLIGATORIO').run(req)//que sean emails validos.
     await check('password').notEmpty().withMessage('LA CONTRASEÑA ES OBLIGATORIA').run(req)//un minimo necesario de contrasenias
@@ -28,6 +28,33 @@ const autenticar= async(req,res)=> {
             errores: resultado.array(),//envio a la vista los msj de las validaciones
         })
     }
+
+    //comprueba si el usuario existe
+
+    const { email, password } = req.body//tomo los valores de los campos.
+    //Busca el email del usuario en la bd
+    const usuario = await Usuario.findOne({ where: { email} })
+    //si no existe el usuario
+    if (!usuario) {
+        //renderiza la vista
+        return res.render('auth/login', {
+            pagina: 'iniciar sesion',
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+            errores:[{msg:'El usuario no existe'}]
+        })
+    
+    }
+    //comprobar si el usuario esta confirmado.
+    console.log('confirmado', usuario.confirmado)
+    if(!usuario.confirmado){
+        //renderiza la vista
+        return res.render('auth/login', {
+            pagina: 'iniciar sesion',
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+            errores:[{msg:'Tu cuenta no a sido confirmada'}]
+        }) 
+    }
+
 
 }
 const formularioRegistro = (req, res) => {
@@ -108,7 +135,7 @@ const registrar = async (req, res) => {
 const confirmar = async (req, res) => {
     const { token } = req.params;
     console.log(token)
-    //verificar si el token es valido.
+    //Busca el token es en la bd
     const usuario = await Usuario.findOne({ where: { token } })
     //si no existe el usuario
     if (!usuario) {
@@ -122,7 +149,7 @@ const confirmar = async (req, res) => {
     }
     //confirmar la cuenta
     usuario.token = null;//el token es de uso unico, una vez usado se vuelve nulo.
-    usuario.confirmar = true;
+    usuario.confirmado = true;
     await usuario.save()// se guarda la nueva informacion en la bd
     res.render('auth/confirmar-cuenta', {
         pagina: 'Cuenta confirmada',
@@ -236,7 +263,7 @@ const nuevoPassword = async (req, res) => {
     res.render('auth/confirmar-cuenta',
         {
             pagina: 'Contraseña reestablecida',
-            mensaje:'La contraseña se guardo correctamente'
+            mensaje: 'La contraseña se guardo correctamente'
         })
 
 

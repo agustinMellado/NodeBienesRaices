@@ -16,10 +16,9 @@ const Usuario = db.define('usuario',{
         type: DataTypes.STRING, //TIPO DE DATO
         allowNull: false// indica que ese campo no puede ir vacio.
     },
-    token:{
-        type: DataTypes.STRING, //TIPO DE DATO
-        confirmado: DataTypes.BOOLEAN,
-    }},{
+    token:DataTypes.STRING, //TIPO DE DATO
+    confirmado: DataTypes.BOOLEAN,
+    },{
         hooks:{ 
             //Antes que se cree el nuevo registro de usuario,interseptamos el password y lo encriptamos.
             beforeCreate: async function(usuario){
