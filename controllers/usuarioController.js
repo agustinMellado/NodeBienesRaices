@@ -45,7 +45,6 @@ const autenticar = async (req, res) => {
     
     }
     //comprobar si el usuario esta confirmado.
-    console.log('confirmado', usuario.confirmado)
     if(!usuario.confirmado){
         //renderiza la vista
         return res.render('auth/login', {
@@ -54,8 +53,15 @@ const autenticar = async (req, res) => {
             errores:[{msg:'Tu cuenta no a sido confirmada'}]
         }) 
     }
-    //revisar contraseña
-
+    //revisar la contraseña
+    if(!usuario.verificarPassword(password)){
+        //renderiza la vista
+        return res.render('auth/login', {
+            pagina: 'iniciar sesion',
+            csrfToken: req.csrfToken(),//cada vez que se visite el formulario se genera un token.
+            errores:[{msg:'El password es incorrecto'}]
+        }) 
+    }
 
 }
 const formularioRegistro = (req, res) => {
