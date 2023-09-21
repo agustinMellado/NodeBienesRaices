@@ -63,7 +63,7 @@ const autenticar = async (req, res) => {
         }) 
     }
     //autenticar al usuario.
-    const token = generarJwt(usuario.id)
+    const token = generarJwt({id:usuario.id, nombre:usuario.nombre})
     console.log(token);
 
 
