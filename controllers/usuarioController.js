@@ -1,9 +1,9 @@
 import { check, validationResult } from 'express-validator'
 import bcrypt from "bcrypt";
 import Usuario from '../models/Usuario.js'
-import { generarId } from '../helpers/token.js'
+import { generarId, generarJwt } from '../helpers/token.js'
 import { emailRecuperarPass, emailRegistro } from '../helpers/email.js'
-import jwt from 'jsonwebtoken'
+
 //zona de controllador
 const formularioLogin = (req, res) => {
     //.render encargado de mostrar una vista.
@@ -63,7 +63,7 @@ const autenticar = async (req, res) => {
         }) 
     }
     //autenticar al usuario.
-    const token =
+    const token = generarJwt(usuario.id)
     console.log(token);
 
 

@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 
 
 //funcion para generar un jwt
-const generateJwt = id => jwt.sign({
- id
+const generarJwt = id => jwt.sign({ //toma el id del usuario
+    id
 }, process.env.JWT_SECRET, {
     expiresIn: '1d'//tiempo de vida token, 1 dia.
 
@@ -15,5 +15,6 @@ const generarId = () =>
 
 
 export {
+    generarJwt,
     generarId
 }
