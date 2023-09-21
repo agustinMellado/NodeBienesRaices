@@ -64,7 +64,12 @@ const autenticar = async (req, res) => {
     }
     //autenticar al usuario.
     const token = generarJwt({id:usuario.id, nombre:usuario.nombre})
-    console.log(token);
+    
+    //almacenar en un cookie
+    return res.cookie('_token',token,{
+        httpOnly:true,//evita ataques cross site
+        //secure:true //opcion para agregar en deployment, depende de la proteccion del hosting
+    }).redirect('/mis-propiedades')
 
 
 }
