@@ -63,14 +63,7 @@ const autenticar = async (req, res) => {
         }) 
     }
     //autenticar al usuario.
-    const token =jwt.sign({
-        nombre:'agustin',
-        empresa:'Bienes Raices',
-        tecnologias:'Node.js'
-    },"palabraquefuncionaparafirmareljsonwebtoken",{
-        expiresIn:'1d'//tiempo de vida token, 1 dia.
-
-    });
+    const token =
     console.log(token);
 
 
