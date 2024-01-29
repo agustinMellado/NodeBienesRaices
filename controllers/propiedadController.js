@@ -15,5 +15,6 @@ const crear = (req, res)=>{
 }
 
 export {
-    admin
+    admin,
+    crear
 }
