@@ -33,6 +33,13 @@
         geocodeService.reverse().latlng(posicion, 13).run(function (error, resultado) { 
             //al presionar larga un popup con la direccion
             marker.bindPopup(resultado.address.LongLabel) 
+
+            //llenar los campos
+            document.querySelector('.calle').textContent = resultado?.address?.Address ?? '';//lectura
+            //datos a guardar
+            document.querySelector('#calle').value = resultado?.address?.Address ?? '';
+            document.querySelector('#lat').value = resultado?.latlng?.lat ?? '';
+            document.querySelector('#lng').value = resultado?.latlng?.lng ?? '';
         })
 
     })
