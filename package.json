@@ -8,7 +8,8 @@
     "start": "node index.js",
     "serve": "nodemon index.js",
     "css": "postcss  public/css/tailwind.css -o public/css/app.css --watch",
-    "js": "webpack"
+    "js": "webpack --watch",
+    "dev": "concurrently \"npm run css\"\"npm run js\""
   },
   "keywords": [
     "MVC",

@@ -16,7 +16,7 @@
   \************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n\n\n//# sourceURL=webpack://bienesraices/./src/js/mapa.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nalert(\"ola soy el mapa\")\n\n//# sourceURL=webpack://bienesraices/./src/js/mapa.js?");
 
 /***/ })
 
