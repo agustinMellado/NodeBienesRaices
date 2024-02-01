@@ -12,9 +12,13 @@ const Propiedad= db.define('propiedad',{
         type: DataTypes.STRING(100),
         allowNull:false,
     },
-    titulo:{
+    descripcion:{
         type: DataTypes.TEXT,
         allowNull:false,
+    },
+    precio: {
+        type: DataTypes.NUMBER(30),
+        allowNull: false
     },
     habitaciones:{
         type: DataTypes.INTEGER,
