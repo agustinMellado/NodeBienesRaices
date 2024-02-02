@@ -1,5 +1,5 @@
 const categorias = [
-    { nombre: ' casa ' },
+    { nombre: 'casa ' },
     { nombre: 'departamento' },
     { nombre: 'monoambiente' },
     { nombre: 'duplex' },

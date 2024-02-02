@@ -1,4 +1,4 @@
-import Categoria from "../models/Categoria"
+import Categoria from "../models/Categoria.js"
 
 
 const admin = (req,res)=>{
@@ -11,12 +11,12 @@ const admin = (req,res)=>{
 
 const crear = async (req, res)=>{
     //consultar modelo Categoria
-    const [categoria]= await Categoria.findAll()
+    const categorias= await Categoria.findAll();
 
     res.render("propiedades/crear", {
         pagina:'Crear Propiedad',
         mostrarNavbar: true,
-        categoria
+        categorias:categorias
     })
 }
 
