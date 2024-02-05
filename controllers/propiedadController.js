@@ -19,8 +19,11 @@ const crear = async (req, res)=>{
         categorias:categorias
     })
 }
+const guardar =(req, res)=>{
 
+}
 export {
     admin,
-    crear
+    crear,
+    guardar
 }
